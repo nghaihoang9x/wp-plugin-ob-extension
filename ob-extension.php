@@ -7,7 +7,7 @@
 Plugin Name: OB extension
 Plugin URI: https://OB extension.com/
 Description: For OB extension
-Version: 1.0.2
+Version: 1.0.3
 Requires at least: 5.0
 Requires PHP: 5.2
 Author: Automattic
@@ -44,8 +44,9 @@ add_action('wp_head', 'wpshout_action_header');
 function wpshout_action_header()
 {
 
-	wp_register_style('ob-extension', plugin_dir_url(__FILE__) . '_inc/ob-extension.css', array(), false);
+	wp_register_style('ob-extension', plugin_dir_url(__FILE__) . '_inc/css/ob-extension.css', array(), false);
 	wp_enqueue_style('ob-extension');
+    wp_enqueue_script( 'ob-extension-js', plugin_dir_url(__FILE__) . '_inc/js/ob-extension.js', false );
 }
 
 add_action('wp_enqueue_scripts', 'wpshout_action_header', false);

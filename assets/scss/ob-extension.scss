@@ -1,0 +1,1581 @@
+.content-index-ob {
+    background-color: #1c1b18;
+    padding-top: 90px;
+    padding-bottom: 90px;
+
+    + .subscribe-container {
+        @media screen and (max-width: 768px) {
+            padding-bottom: 42px;
+        }
+        .subscribe-container-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            @media screen and (max-width: 768px) {
+                flex-flow: column;
+            }
+        }
+    }
+
+    &__row {
+        display: flex;
+        gap: 1.5rem;
+        color: #fff;
+        padding-bottom: 18px;
+        margin-bottom: 24px;
+        border-bottom: 1px solid rgba(217, 217, 217, 0.11);
+        font-family: "DIN 2014";
+        cursor: pointer;
+
+        &--primary>div {
+            color: #febf10;
+            font-family: "Publico Text";
+            font-style: normal;
+            font-weight: 400;
+            font-size: 20px;
+            line-height: 30px;
+        }
+
+        &-table {
+            overflow: hidden;
+
+            /* width */
+            &::-webkit-scrollbar {
+                width: 4px;
+                border-radius: 100px;
+                cursor: pointer;
+            }
+
+            /* Track */
+            &::-webkit-scrollbar-track {
+                background: #171715;
+            }
+
+            /* Handle */
+            &::-webkit-scrollbar-thumb {
+                background: rgba(255, 255, 255, 0.05);
+            }
+
+            /* Handle on hover */
+            &::-webkit-scrollbar-thumb:hover {
+                background: #555;
+            }
+        }
+    }
+
+    &__title {
+        width: 20%;
+        color: #fff;
+    }
+
+    &__theme {
+        width: 60%;
+        color: #fff;
+    }
+
+    &__author {
+        width: 20%;
+        color: #fff;
+    }
+
+    &__table {
+        position: relative;
+
+        &.is-lock::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 170px;
+            background: linear-gradient(180deg, rgba(28, 27, 24, 0) 0%, #1c1b18 100%);
+            pointer-events: none;
+        }
+    }
+}
+
+div.wpforms-container-full .wpforms-form .wpforms-field-label.wpforms-label-hide,
+div.wpforms-container-full .wpforms-form .wpforms-field-sublabel.wpforms-sublabel-hide {
+    position: absolute;
+    top: -99999px;
+    left: -99999px;
+}
+
+.container-popup-form {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: all 0.3s;
+
+    &.is-active {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: visible;
+    }
+
+    .wrapper-form {
+        max-width: 768px;
+        padding: 50px 90px !important;
+
+        .form-control.form-control-inline h2 {
+            font-family: "Publico Text";
+            font-style: normal;
+            font-weight: 400;
+            font-size: 36px;
+            line-height: 50px;
+            /* or 139% */
+            text-align: center;
+            width: 100%;
+            margin-bottom: 24px;
+            color: #000;
+        }
+    }
+
+    .wrapper-signup .sign-up-form {
+        .wrapper-form {
+            background-color: #fff;
+        }
+
+
+        .wpforms-field input[type="checkbox"],
+        .wrapper-form .form-control input:not([type="checkbox"]),
+        div.wpforms-container-full .wpforms-form select {
+            background: rgba(28, 27, 24, 0.05);
+            color: #404040;
+        }
+    }
+}
+
+
+.ob-extension-detail {
+    display: flex;
+    align-items: flex-start;
+    background-color: #fff;
+    width: 90vw;
+    height: 90vh;
+    border-radius: 0.5rem;
+    padding: 70px 1.5rem;
+    max-width: 1330px;
+    margin: 0 auto;
+}
+
+.ob-extension-sidebar {
+    flex: 0 0 268px;
+
+    &__inner {
+        background: rgba(28, 27, 24, 0.05);
+        padding: 17px 20px;
+    }
+
+    h2 {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 30px;
+        border-bottom: 1px solid rgba(28, 27, 24, 0.1);
+        margin-bottom: 19px;
+        padding-bottom: 19px;
+    }
+
+    ul {
+        display: flex;
+        flex-flow: column;
+        margin: 0;
+        padding: 0;
+        gap: 19px;
+        font-size: 16px;
+        line-height: 24px;
+        max-height: 50vh;
+        overflow: hidden auto;
+
+        li {
+            list-style: none;
+
+            a {
+                color: #b08a2e;
+                text-decoration: none;
+
+                &:hover,
+                &.is-active {
+                    color: #1c1b18;
+                }
+
+                &.is-active {
+                    font-weight: 600;
+                }
+            }
+        }
+
+    }
+}
+
+.ob-extension-content {
+    display: flex;
+    height: 100%;
+    flex: 1;
+
+    &__wrapper {
+        height: 100%;
+        padding-left: 100px;
+        padding-right: 100px;
+        width: 100%;
+    }
+
+    &__inner {
+        overflow-x: hidden;
+        overflow-y: auto;
+        height: 100%;
+        width: 100%;
+        margin: 0 auto;
+
+        h6 {
+            margin-top: 40px;
+            font-weight: 400;
+            font-size: 20px;
+            line-height: 30px;
+        }
+
+        p {
+            margin-top: 12px;
+            margin-bottom: 12px;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 24px;
+        }
+    }
+
+    &__head {
+        margin-bottom: 28px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #000;
+
+        span {
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 24px;
+            margin-bottom: 4px;
+        }
+
+        h2 {
+            font-weight: 400;
+            font-size: 28px;
+            line-height: 36px;
+        }
+    }
+
+}
+
+.ob-extension-detail {
+    position: relative;
+
+    &__close {
+        position: absolute;
+        right: -5px;
+        top: -5px;
+        width: 50px;
+        height: 50px;
+        z-index: 1;
+
+        &:before,
+        &:after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            right: 50%;
+            width: 12px;
+            height: 2px;
+            background-color: #8b9bb2;
+            transform: rotate(45deg);
+        }
+
+        &:before {
+            transform: rotate(-45deg);
+        }
+
+        .ob-extension-scrollToList {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 60px;
+            height: 60px;
+            background: #febf10;
+            transition: all 0.3s;
+        }
+    }
+}
+
+
+
+.ob-extension-scrollToList.is-remove {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/*# sourceMappingURL=ob-extension.css.map */
+
+.container-popup-form div.wpforms-container-full .wpforms-form ul li.choice-1:last-of-type {
+    display: flex;
+}
+
+.ob-extension-select {
+    display: none;
+    background: rgba(28, 27, 24, 0.05);
+    border: 0;
+    padding: 6px 16px;
+    white-space: normal;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin-bottom: 32px;
+}
+
+@media screen and (max-width: 768px) {
+    .ob-extension-content {
+        width: 100%;
+        flex-flow: column;
+    }
+
+    .ob-extension-select {
+        display: block;
+    }
+}
+
+.ct-info-quote {
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
+.ct-info-quote__description {
+    font-family: 'Publico Text';
+    font-size: 20px;
+    line-height: 1.5rem;
+    color: #1c1b18;
+    max-width: 500px;
+}
+
+.ct-info-quote__author {
+    display: flex;
+}
+
+.ct-info-quote__author:before {
+    content: "";
+    display: block;
+    flex: 1;
+    background: #febf10;
+    height: 2px;
+    margin-top: 40px;
+}
+
+@media screen and (max-width: 768px) {
+    .ct-info-quote__author:before {
+        background-color: #fff 0;
+    }
+}
+
+.ct-info-quote__content {
+    padding: 28px 32px 0;
+}
+
+@media screen and (max-width: 768px) {
+    .ct-info-quote__content {
+        padding-top: 12px;
+    }
+}
+
+.ct-info-quote__name {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 22px;
+    color: #000;
+}
+
+.ct-info-quote__position {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 20px;
+    color: rgba(28, 27, 24, 0.6);
+}
+
+.ct-info-quote__truelayer {
+    margin-top: 20px;
+}
+
+@media screen and (max-width: 768px) {
+    .ct-info-quote__truelayer {
+        margin-top: 10px;
+    }
+}
+
+.ct-info-quote__truelayer img {
+    max-height: 18px;
+    object-fit: contain;
+}
+
+.ct-info-quote__avatar img {
+    width: 100px;
+    height: 133px;
+    object-fit: cover;
+}
+
+@media screen and (max-width: 768px) {
+    .ct-info-quote__avatar img {
+        height: 100px;
+    }
+}
+
+
+
+.wrapper-sponsor .content-sponsor .icon-sponsor img {
+    max-height: 45px;
+}
+
+.wrapper-speaker-detail-banner .info-speaker .description a {
+    color: #b08a2e;
+}
+
+.wrapper-speaker-detail-banner .avatar-speaker img {
+    object-fit: contain;
+    max-height: 100%;
+}
+
+.headline-sponsors.sponsor-card .sponsor-content .sponsor-avatar {
+    margin: 8px;
+    padding: 0 10px;
+}
+
+.wrapper-sponsor .content-sponsor .icon-sponsor {
+    margin-right: 20px;
+}
+
+.wrapper-sponsor .content-sponsor .icon-sponsor img {
+    max-height: 40px;
+}
+
+@media (max-width: 1024px) {
+    .wrapper-sponsor .content-sponsor .icon-sponsor {
+        margin-right: 20px;
+    }
+
+    .wrapper-sponsor .content-sponsor .wrapper-icon {
+        display: -webkit-box;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        margin-left: -20px;
+        margin-right: -20px;
+    }
+
+    .wrapper-sponsor .content-sponsor .wrapper-icon:before,
+    .wrapper-sponsor .content-sponsor .wrapper-icon:after {
+        content: "";
+        display: block;
+        padding-left: 20px;
+    }
+}
+
+.wrapper-brazil .invitations {
+    padding-bottom: 0;
+}
+
+.elementor-widget-BrazilPreviousCampfire .wrapper-previous {
+    padding-top: 50px;
+}
+
+
+.page-id-7819 section.elementor-section.elementor-top-section.elementor-element.elementor-element-89e4c8c.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default .list-slide-speaker {
+    display: none !important;
+}
+
+.page-id-7819 section.elementor-section.elementor-top-section.elementor-element.elementor-element-89e4c8c.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default .wrapper-speaker-campfire {
+    padding: 0;
+}
+
+.page-id-7819 section.elementor-section.elementor-top-section.elementor-element.elementor-element-8a47511.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default {
+    position: relative;
+    padding-top: 100px;
+}
+
+.page-id-7819 section.elementor-section.elementor-top-section.elementor-element.elementor-element-8a47511.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+
+.page-id-7819 section.elementor-section.elementor-top-section.elementor-element.elementor-element-8a47511.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default .swiper-slide-inner {
+    margin: 0;
+}
+
+.page-id-7819 section.elementor-section.elementor-top-section.elementor-element.elementor-element-8a47511.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default>.elementor-container.elementor-column-gap-default {
+    max-width: 768px;
+}
+
+.page-id-7819 section.elementor-section.elementor-top-section.elementor-element.elementor-element-257b953.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default {
+    background: rgba(28, 27, 24, 0.05);
+    padding-top: 100px;
+}
+
+.page-id-7819 section.elementor-section.elementor-inner-section.elementor-element.elementor-element-a0d6c91.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default {
+    text-align: center;
+    margin-bottom: 58px;
+}
+
+.page-id-7819 section.elementor-section.elementor-inner-section.elementor-element.elementor-element-a0d6c91.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default h2 {
+    font-family: 'Publico Text';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 52px;
+    line-height: 64px;
+    text-align: center;
+    color: #1c1b18;
+}
+
+.page-id-7819 section.elementor-section.elementor-inner-section.elementor-element.elementor-element-a0d6c91.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default p {
+    font-family: 'DIN 2014';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+    color: #1c1b18;
+    max-width: 568px;
+    margin: 0 auto;
+}
+
+.page-id-7819 section.elementor-section.elementor-inner-section.elementor-element.elementor-element-d407542.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default {
+    max-width: 1168px;
+    margin: 0 auto;
+}
+
+.page-id-7819 section.elementor-section.elementor-inner-section.elementor-element.elementor-element-d407542.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default h4 {
+    font-family: 'Publico Text';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 36px;
+    color: #1c1b18;
+}
+
+.page-id-7819 section.elementor-section.elementor-inner-section.elementor-element.elementor-element-d407542.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default p {
+    font-family: 'DIN 2014';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: rgba(28, 27, 24, 0.8);
+}
+
+.page-id-7819 section.elementor-section.elementor-inner-section.elementor-element.elementor-element-cc72fe4.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default {
+    max-width: 1168px;
+    margin: 0 auto;
+    padding-top: 20px;
+}
+
+.page-id-7819 section.elementor-section.elementor-inner-section.elementor-element.elementor-element-cc72fe4.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default .elementor-widget-wrap.elementor-element-populated {
+    background: #fff;
+    border: 2px solid rgba(28, 27, 24, 0.05);
+    padding: 34px 20px;
+}
+
+.page-id-7819 section.elementor-section.elementor-inner-section.elementor-element.elementor-element-cc72fe4.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default h3.elementor-icon-box-title {
+    font-family: 'Publico Text';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+    color: #1c1b18;
+    border-bottom: 1px solid rgba(28, 27, 24, 0.1);
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+.page-id-7819 section.elementor-section.elementor-inner-section.elementor-element.elementor-element-cc72fe4.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default .elementor-icon-box-icon {
+    text-align: left;
+}
+
+.page-id-7819 section.elementor-section.elementor-inner-section.elementor-element.elementor-element-cc72fe4.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default .elementor-icon-box-content {
+    text-align: left;
+}
+
+.page-id-7819 section.elementor-section.elementor-inner-section.elementor-element.elementor-element-cc72fe4.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default .elementor-icon-box-content ul {
+    margin: 0;
+    padding: 0 20px;
+}
+
+.page-id-7819 section.elementor-section.elementor-inner-section.elementor-element.elementor-element-cc72fe4.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default .elementor-icon-box-content ul li {
+    padding: 0;
+}
+
+.page-id-7819 section.elementor-section.elementor-inner-section.elementor-element.elementor-element-cc72fe4.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default .elementor-icon-box-content ul li+li {
+    margin-top: 10px;
+}
+
+.page-id-7819 section.elementor-section.elementor-inner-section.elementor-element.elementor-element-cebcf3d.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default {
+    max-width: 1168px;
+    margin: 0 auto;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+.page-id-7819 section.elementor-section.elementor-inner-section.elementor-element.elementor-element-cebcf3d.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default h5 {
+    font-family: 'Publico Text';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 36px;
+    color: #1c1b18;
+}
+
+.page-id-7819 section.elementor-section.elementor-inner-section.elementor-element.elementor-element-cebcf3d.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default p {
+    font-family: 'DIN 2014';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: rgba(28, 27, 24, 0.8);
+    margin: 0;
+}
+
+.page-id-7819 section.elementor-section.elementor-inner-section.elementor-element.elementor-element-cebcf3d.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default ul {
+    font-family: 'DIN 2014';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #1c1b18;
+}
+
+.page-id-7819 section.elementor-section.elementor-inner-section.elementor-element.elementor-element-5209621.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default {
+    max-width: 1168px;
+    margin: 0 auto;
+}
+
+.page-id-7819 section.elementor-section.elementor-inner-section.elementor-element.elementor-element-5209621.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default .elementor-widget-image img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.page-id-7819 section.elementor-section.elementor-inner-section.elementor-element.elementor-element-5209621.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default .elementor-column.elementor-col-50.elementor-inner-column.elementor-element.elementor-element-8e7214c {
+    width: 768px;
+}
+
+.page-id-7819 section.elementor-section.elementor-inner-section.elementor-element.elementor-element-5209621.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default .elementor-column.elementor-col-50.elementor-inner-column.elementor-element.elementor-element-52dd79b {
+    flex: 1;
+    width: auto;
+    padding-left: 68px;
+    padding-top: 60px;
+}
+
+.page-id-7819 section.elementor-section.elementor-inner-section.elementor-element.elementor-element-e7edcea.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default {
+    max-width: 1168px;
+    margin: 0 auto;
+}
+
+.page-id-7819 section.elementor-section.elementor-inner-section.elementor-element.elementor-element-e7edcea.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default .elementor-container.elementor-column-gap-default {
+    max-width: 800px;
+    background-color: #fff;
+    padding: 40px 30px;
+    margin-left: auto;
+    margin-right: 0;
+    margin-top: -200px;
+}
+
+.page-id-7819 section.elementor-section.elementor-inner-section.elementor-element.elementor-element-e7edcea.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default h2 {
+    font-family: 'Publico Text';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 52px;
+    line-height: 64px;
+    color: #febf10;
+}
+
+.page-id-7819 section.elementor-section.elementor-inner-section.elementor-element.elementor-element-e7edcea.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default p {
+    font-family: 'DIN 2014';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: rgba(28, 27, 24, 0.8);
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.page-id-7819 section.elementor-section.elementor-inner-section.elementor-element.elementor-element-e7edcea.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default .elementor-col-33 {
+    padding: 0 34px;
+}
+
+.page-id-7819 section.elementor-section.elementor-inner-section.elementor-element.elementor-element-e7edcea.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default .elementor-col-33+.elementor-col-33 {
+    border-left: 1px solid rgba(28, 27, 24, 0.05);
+}
+
+.page-id-7819 section.elementor-section.elementor-inner-section.elementor-element.elementor-element-e1fa7e3.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default {
+    max-width: 1168px;
+    margin: 0 auto;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+.page-id-7819 section.elementor-section.elementor-inner-section.elementor-element.elementor-element-e1fa7e3.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default .elementor-widget-image img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.page-id-7819 .elementor-column.elementor-col-50.elementor-inner-column.elementor-element.elementor-element-ac88ae7 {
+    padding-left: 100px;
+}
+
+.page-id-7819 .elementor-column.elementor-col-50.elementor-inner-column.elementor-element.elementor-element-ac88ae7 h4 {
+    font-family: 'Publico Text';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 36px;
+    color: #1c1b18;
+}
+
+.page-id-7819 .elementor-column.elementor-col-50.elementor-inner-column.elementor-element.elementor-element-ac88ae7 p {
+    font-family: 'DIN 2014';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: rgba(28, 27, 24, 0.8);
+}
+
+.page-id-7819 .elementor-column.elementor-col-50.elementor-inner-column.elementor-element.elementor-element-ac88ae7 .elementor-column.elementor-col-50.elementor-inner-column.elementor-element.elementor-element-9a4775d {
+    width: 668px;
+    max-width: 100%;
+}
+
+.page-id-7819 .elementor-column.elementor-col-50.elementor-inner-column.elementor-element.elementor-element-ac88ae7 .elementor-column.elementor-col-50.elementor-inner-column.elementor-element.elementor-element-ac88ae7 {
+    flex: 1;
+}
+
+.page-id-7819 .elementor-widget-image img {
+    max-width: 100%;
+}
+
+section.elementor-section.elementor-top-section.elementor-element.elementor-element-8a47511.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default {
+    position: relative;
+}
+
+section.elementor-section.elementor-top-section.elementor-element.elementor-element-8a47511.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default .elementor-heading-title {
+    font-family: 'Publico Text';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 44px;
+    line-height: 56px;
+    /* identical to box height, or 127% */
+    text-align: center;
+    /* Neutral/White/White-100 */
+    color: #fff;
+}
+
+section.elementor-section.elementor-top-section.elementor-element.elementor-element-8a47511.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-image: url("https://www.openbankingexcellence.org/wp-content/uploads/2023/01/Group-5.png");
+    height: 70%;
+    background-size: 400px;
+    background-position: 15% center;
+    background-color: #171717;
+    background-repeat: no-repeat;
+}
+
+section.elementor-section.elementor-top-section.elementor-element.elementor-element-6167b8b.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default {
+    padding-top: 176px;
+}
+
+section.elementor-section.elementor-top-section.elementor-element.elementor-element-6167b8b.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default h2.elementor-heading-title.elementor-size-default {
+    font-family: 'Publico Text';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 180px;
+    line-height: 180px;
+    /* identical to box height */
+    /* Neutral/Black/Black-5 */
+    color: rgba(28, 27, 24, 0.05);
+    text-align: center;
+}
+
+section.elementor-section.elementor-inner-section.elementor-element.elementor-element-9ffe853.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding-bottom: 125px;
+}
+
+section.elementor-section.elementor-inner-section.elementor-element.elementor-element-9ffe853.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default .elementor-widget-text-editor {
+    /* Heading 2 */
+}
+
+section.elementor-section.elementor-inner-section.elementor-element.elementor-element-9ffe853.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default .elementor-widget-text-editor h2 {
+    font-family: 'Publico Text';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 52px;
+    line-height: 64px;
+    /* or 123% */
+    /* Neutral/Black/Black-100 */
+    color: #1c1b18;
+}
+
+section.elementor-section.elementor-inner-section.elementor-element.elementor-element-9ffe853.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default .elementor-widget-text-editor h2 p {
+    /* Body 16/Normal */
+    font-family: 'DIN 2014';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    /* or 150% */
+    /* Neutral/Black/Black-100 */
+    color: #1c1b18;
+}
+
+section.elementor-section.elementor-inner-section.elementor-element.elementor-element-9ffe853.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default .elementor-widget-testimonial {
+    background: #febf10;
+    padding: 40px 72px 90px 40px;
+}
+
+section.elementor-section.elementor-inner-section.elementor-element.elementor-element-9ffe853.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default .elementor-widget-testimonial .elementor-testimonial-content {
+    /* Heading 6 */
+    font-family: 'Publico Text';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+    /* or 150% */
+    /* Neutral/Black/Black-100 */
+    color: #1c1b18;
+}
+
+section.elementor-section.elementor-inner-section.elementor-element.elementor-element-9ffe853.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default .elementor-widget-testimonial .elementor-testimonial-meta {
+    position: absolute;
+    right: 0;
+    bottom: -16px;
+}
+
+section.elementor-section.elementor-inner-section.elementor-element.elementor-element-9ffe853.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default .elementor-widget-testimonial .elementor-testimonial-meta .elementor-testimonial-meta-inner {
+    display: flex;
+    flex-flow: row-reverse;
+    align-items: center;
+    margin-right: -68px;
+}
+
+section.elementor-section.elementor-inner-section.elementor-element.elementor-element-9ffe853.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default .elementor-widget-testimonial .elementor-testimonial-meta .elementor-testimonial-meta-inner .elementor-testimonial-image {
+    padding-right: 0;
+}
+
+section.elementor-section.elementor-inner-section.elementor-element.elementor-element-9ffe853.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default .elementor-widget-testimonial .elementor-testimonial-meta .elementor-testimonial-meta-inner .elementor-testimonial-image img {
+    border-radius: 0;
+    width: 140px;
+    height: 140px;
+    border: 15px solid #fff;
+}
+
+section.elementor-section.elementor-inner-section.elementor-element.elementor-element-9ffe853.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default .elementor-widget-testimonial .elementor-testimonial-meta .elementor-testimonial-meta-inner .elementor-testimonial-details {
+    padding-right: 25px;
+}
+
+section.elementor-section.elementor-inner-section.elementor-element.elementor-element-9ffe853.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default .elementor-widget-testimonial .elementor-testimonial-meta .elementor-testimonial-meta-inner .elementor-testimonial-details .elementor-testimonial-name {
+    /* Body 20/Bold */
+    font-family: 'DIN 2014';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 30px;
+    /* identical to box height, or 150% */
+    color: #000;
+}
+
+section.elementor-section.elementor-inner-section.elementor-element.elementor-element-9ffe853.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default .elementor-widget-testimonial .elementor-testimonial-meta .elementor-testimonial-meta-inner .elementor-testimonial-details .elementor-testimonial-job {
+    /* Body 14/Normal */
+    font-family: 'DIN 2014';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+    /* identical to box height, or 157% */
+    /* Neutral/Black/Black-60 */
+    color: rgba(28, 27, 24, 0.6);
+}
+
+section.elementor-section.elementor-inner-section.elementor-element.elementor-element-cc72fe4.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default .elementor-container {
+    margin-left: -16px;
+    margin-right: -16px;
+}
+
+section.elementor-section.elementor-inner-section.elementor-element.elementor-element-cc72fe4.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default .elementor-column {
+    padding: 0 16px;
+}
+
+section.elementor-section.elementor-inner-section.elementor-element.elementor-element-cebcf3d.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default ul {
+    margin: 0;
+    padding: 0 0 0 40px;
+}
+
+section.elementor-section.elementor-inner-section.elementor-element.elementor-element-cebcf3d.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default ul li {
+    position: relative;
+    list-style: none;
+}
+
+section.elementor-section.elementor-inner-section.elementor-element.elementor-element-cebcf3d.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default ul li:before {
+    content: "";
+    position: absolute;
+    right: 100%;
+    top: 7px;
+    width: 12px;
+    height: 12px;
+    background-image: url("https://www.openbankingexcellence.org/wp-content/uploads/2023/01/check.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-right: 7px;
+}
+
+section.elementor-section.elementor-inner-section.elementor-element.elementor-element-cebcf3d.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default ul li+li {
+    margin-top: 15px;
+}
+
+section.elementor-section.elementor-inner-section.elementor-element.elementor-element-5209621.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default .elementor-column.elementor-col-50.elementor-inner-column.elementor-element.elementor-element-52dd79b {
+    /* Heading 5 */
+}
+
+section.elementor-section.elementor-inner-section.elementor-element.elementor-element-5209621.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default .elementor-column.elementor-col-50.elementor-inner-column.elementor-element.elementor-element-52dd79b h4 {
+    font-family: 'Publico Text';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 36px;
+    /* or 129% */
+    /* Neutral/Black/Black-100 */
+    color: #1c1b18;
+}
+
+section.elementor-section.elementor-inner-section.elementor-element.elementor-element-5209621.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default .elementor-column.elementor-col-50.elementor-inner-column.elementor-element.elementor-element-52dd79b p {
+    /* Body 16/Normal */
+    font-family: 'DIN 2014';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    /* or 150% */
+    /* Neutral/Black/Black-80 */
+    color: rgba(28, 27, 24, 0.8);
+}
+
+.page-id-7819 footer#colophon {
+    display: flex;
+    padding-top: 40px;
+}
+
+.page-id-7819 footer#colophon .subscribe-container {
+    display: none;
+}
+
+.page-id-7819 footer#colophon .footer-register-card {
+    display: none;
+}
+
+.elementor-section-boxed .subscribe-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9;
+    transition: all 0.3s;
+    transform: translate3d(0, 100%, 0);
+    height: 86px;
+    display: flex;
+    align-items: center;
+}
+
+.elementor-section-boxed .subscribe-container.is-active {
+    transform: translate3d(0, 0%, 0);
+}
+
+.elementor-section-boxed .subscribe-container.is-active.fix-active-active {
+    position: absolute;
+    bottom: 0px;
+}
+
+.elementor-section-boxed .subscribe-container .subscribe-container-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.content-index-ob {
+    padding-bottom: 180px;
+}
+
+.elementor-section-boxed .subscribe-container .btn {
+    border: 2px solid #1C1B18;
+}
+
+.elementor-section-boxed .subscribe-container .btn+.btn {
+    color: #1C1B18;
+    background-color: #FEBF10;
+    margin-left: 20px;
+}
+
+/*# sourceMappingURL=style.css.map */
+@media screen and (max-width: 768px) {
+    section.elementor-section.elementor-top-section.elementor-element.elementor-element-7740aaf.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default h1.main-text-banner {
+        font-family: "Publico Text";
+        font-size: 42px;
+    }
+
+    section.elementor-section.elementor-top-section.elementor-element.elementor-element-7740aaf.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default .sub-text-banner {
+        font-family: "DIN 2014";
+        font-style: normal;
+        font-weight: 300;
+        font-size: 20px;
+        margin-top: 5px;
+    }
+
+    section.elementor-section.elementor-top-section.elementor-element.elementor-element-89e4c8c.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default .wrapper-slide-speaker {
+        display: none !important;
+    }
+
+    section.elementor-section.elementor-top-section.elementor-element.elementor-element-8a47511.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default .elementor-heading-title {
+        font-size: 24px;
+    }
+
+    section.elementor-section.elementor-top-section.elementor-element.elementor-element-8a47511.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default .elementor-widget-text-editor p {
+        font-weight: 400;
+        font-size: 16px;
+        text-align: center;
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 53px;
+    }
+
+    .page-id-7819 section.elementor-section.elementor-top-section.elementor-element.elementor-element-8a47511.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    section.elementor-section.elementor-top-section.elementor-element.elementor-element-6167b8b.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default h2.elementor-heading-title.elementor-size-default {
+        display: none;
+    }
+
+    section.elementor-section.elementor-inner-section.elementor-element.elementor-element-9ffe853.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default .elementor-widget-text-editor h2 {
+        font-family: "Publico Text";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 32px;
+        line-height: 1.25em;
+        text-align: center;
+    }
+
+    section.elementor-section.elementor-top-section.elementor-element.elementor-element-6167b8b.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default {
+        padding: 100px 20px 0;
+    }
+
+    section.elementor-section.elementor-inner-section.elementor-element.elementor-element-9ffe853.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default .elementor-widget-text-editor p {
+        font-weight: 400;
+        font-size: 16px;
+        /* Neutral/Black/Black-100 */
+        color: #1C1B18;
+        text-align: center;
+    }
+
+    section.elementor-section.elementor-inner-section.elementor-element.elementor-element-9ffe853.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default .elementor-widget-testimonial {
+        padding: 28px;
+    }
+
+    section.elementor-section.elementor-inner-section.elementor-element.elementor-element-9ffe853.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default .elementor-widget-testimonial .elementor-testimonial-meta .elementor-testimonial-meta-inner {
+        margin-left: -28px;
+        margin-right: -28px;
+        background-color: #fff;
+        margin-bottom: -12px;
+        flex-flow: row;
+        padding-top: 24px;
+    }
+
+    section.elementor-section.elementor-inner-section.elementor-element.elementor-element-9ffe853.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default .elementor-widget-testimonial .elementor-testimonial-meta {
+        position: relative;
+    }
+
+    section.elementor-section.elementor-inner-section.elementor-element.elementor-element-9ffe853.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default .elementor-testimonial-wrapper {
+        overflow: unset;
+    }
+
+    section.elementor-section.elementor-inner-section.elementor-element.elementor-element-9ffe853.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default .elementor-widget-testimonial .elementor-testimonial-meta .elementor-testimonial-meta-inner .elementor-testimonial-image img {
+        width: 80px;
+        height: 80px;
+        border: 0;
+    }
+
+    section.elementor-section.elementor-inner-section.elementor-element.elementor-element-9ffe853.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default .elementor-widget-testimonial .elementor-testimonial-meta .elementor-testimonial-meta-inner .elementor-testimonial-details {
+        padding-left: 24px;
+        padding-right: 0;
+    }
+
+    section.elementor-section.elementor-inner-section.elementor-element.elementor-element-9ffe853.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default {
+        padding-bottom: 50px;
+    }
+
+    .page-id-7819 section.elementor-section.elementor-top-section.elementor-element.elementor-element-257b953.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default {
+        padding-top: 50px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .page-id-7819 section.elementor-section.elementor-inner-section.elementor-element.elementor-element-a0d6c91.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default h2 {
+        font-family: "Publico Text";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 32px;
+        line-height: 1.25em;
+    }
+
+    .page-id-7819 section.elementor-section.elementor-inner-section.elementor-element.elementor-element-d407542.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default h4 {
+        text-align: center;
+        /* Body 16/Normal */
+        font-family: "Publico Text";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 28px;
+    }
+
+    .page-id-7819 section.elementor-section.elementor-inner-section.elementor-element.elementor-element-d407542.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default p {
+        /* Body 16/Normal */
+        font-family: "DIN 2014";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+        /* or 150% */
+        text-align: center;
+        /* Neutral/Black/Black-80 */
+        color: rgba(28, 27, 24, 0.8);
+        margin-top: 0;
+    }
+
+    section.elementor-section.elementor-inner-section.elementor-element.elementor-element-cc72fe4.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default .elementor-container {
+        display: -webkit-box;
+        flex-flow: row;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    section.elementor-section.elementor-inner-section.elementor-element.elementor-element-cc72fe4.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default .elementor-column {
+        max-width: 85%;
+    }
+
+    .page-id-7819 section.elementor-section.elementor-inner-section.elementor-element.elementor-element-cebcf3d.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default {
+        padding-top: 40px;
+    }
+
+    .page-id-7819 section.elementor-section.elementor-inner-section.elementor-element.elementor-element-cebcf3d.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default h5 {
+        font-family: "Publico Text";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 28px;
+        text-align: center;
+    }
+
+    .page-id-7819 section.elementor-section.elementor-inner-section.elementor-element.elementor-element-cebcf3d.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default p {
+        /* Body 16/Normal */
+        font-family: "DIN 2014";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+        /* or 150% */
+        text-align: center;
+        /* Neutral/Black/Black-80 */
+        color: rgba(28, 27, 24, 0.8);
+    }
+
+    .page-id-7819 section.elementor-section.elementor-inner-section.elementor-element.elementor-element-cebcf3d.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default ul {
+        padding-left: 28px;
+        margin-top: 20px;
+    }
+
+    section.elementor-section.elementor-inner-section.elementor-element.elementor-element-5209621.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default .elementor-container.elementor-column-gap-default {
+        display: flex;
+        flex-flow: column-reverse;
+    }
+
+    .page-id-7819 section.elementor-section.elementor-inner-section.elementor-element.elementor-element-5209621.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default .elementor-column.elementor-col-50.elementor-inner-column.elementor-element.elementor-element-52dd79b {
+        padding: 0;
+        text-align: center;
+    }
+
+    .page-id-7819 section.elementor-section.elementor-inner-section.elementor-element.elementor-element-5209621.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default .elementor-column.elementor-col-50.elementor-inner-column.elementor-element.elementor-element-8e7214c {
+        max-width: 100%;
+    }
+
+    .page-id-7819 section.elementor-section.elementor-inner-section.elementor-element.elementor-element-e7edcea.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default {
+        max-width: calc(100vw - 100px);
+    }
+
+    .page-id-7819 section.elementor-section.elementor-inner-section.elementor-element.elementor-element-e7edcea.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default .elementor-container.elementor-column-gap-default {
+        margin-top: -70px;
+        text-align: center;
+    }
+
+    .page-id-7819 section.elementor-section.elementor-inner-section.elementor-element.elementor-element-e7edcea.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default .elementor-col-33 {
+        padding: 0 0 20px;
+        border: 0 !important;
+    }
+
+    .page-id-7819 section.elementor-section.elementor-inner-section.elementor-element.elementor-element-e1fa7e3.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default .elementor-container.elementor-column-gap-default {
+        display: flex;
+        flex-flow: column-reverse;
+    }
+
+    .page-id-7819 .elementor-column.elementor-col-50.elementor-inner-column.elementor-element.elementor-element-ac88ae7 {
+        padding: 0;
+        text-align: center;
+    }
+
+    .page-id-7819 .elementor-column.elementor-col-50.elementor-inner-column.elementor-element.elementor-element-ac88ae7 h4 {
+        font-family: "Publico Text";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 28px;
+    }
+
+    .page-id-7819 .elementor-column.elementor-col-50.elementor-inner-column.elementor-element.elementor-element-ac88ae7 p {
+        font-family: "DIN 2014";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    .content-index-ob__row--primary>div:last-of-type {
+        display: none;
+    }
+
+    .content-index-ob__author {
+        display: none;
+    }
+
+    .content-index-ob__title {
+        width: 30%;
+    }
+
+    .elementor-section-boxed .subscribe-container .subscribe-container-wrapper {
+        flex-flow: column;
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .elementor-section-boxed .subscribe-container {
+        padding: 0;
+        height: auto;
+        padding-bottom: 20px;
+        padding-top: 10px;
+    }
+
+    .elementor-section-boxed .subscribe-container .subscribe-form {
+        width: 100%;
+    }
+
+    .content-index-ob__theme {
+        width: 70%;
+    }
+
+    .elementor-section-boxed .subscribe-container .form-control-inline {
+        display: flex;
+        flex-flow: row;
+        width: 100%;
+    }
+
+    .elementor-section-boxed .subscribe-container .form-control-inline .btn {
+        white-space: nowrap;
+    }
+
+    .page-id-7819 footer#colophon>.wrapper {
+        display: none;
+    }
+
+    .page-id-7819 footer#colophon>.wrapper.bottom-footer {
+        display: block;
+    }
+}
+
+/*# sourceMappingURL=style.css.map */
+
+.ob-extension-content__inner {
+    max-width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+    .container-popup-form .wrapper-signup .sign-up-form .wrapper-form {
+        padding: 30px 20px !important;
+        overflow-y: auto;
+        overflow-x: hidden;
+        max-height: 100vh;
+    }
+
+    .container-popup-form .wrapper-form .form-control.form-control-inline h2 {
+        font-size: 24px;
+        line-height: 1.25em;
+    }
+
+    .ob-extension-detail .ob-extension-content a {
+        color: #ffa800;
+    }
+
+    .ob-extension-sidebar {
+        display: none;
+    }
+
+    .ob-extension-content__wrapper {
+        padding: 0;
+    }
+
+    .ob-extension-detail {
+        width: 100vw;
+        padding: 40px 20px;
+    }
+
+
+    .ob-extension-content__head h2 {
+        font-size: 18px;
+        line-height: 1.25em;
+    }
+
+    .ob-extension-content__head span {
+        font-size: 16px;
+    }
+
+    .ob-extension-content {
+        width: 100%;
+    }
+
+}
+
+.ob-extension-content__head {
+    border-bottom: 1px solid #0003;
+}
+
+.container-popup-form {
+    .wrapper-signup.wpforms-container-full {
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    div.wpforms-container-full .wpforms-form {
+        position: relative;
+    }
+
+    div.wpforms-container-full .wpforms-form .ob-extension-detail__close {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        z-index: 1;
+    }
+
+    .ob-extension-content a {
+        color: #ffa800;
+    }
+}
+
+.ob-extension-detail .ob-extension-detail__close {
+    z-index: 1;
+}
+
+.page-id-7819 .content-sponsor.wrapper .icon-sponsor:nth-child(1),
+.page-id-7819 .content-sponsor.wrapper .icon-sponsor:nth-child(2) {
+    display: none;
+}
+
+.ob-extension-sidebar ul {
+    max-height: 50vh;
+    overflow: hidden auto;
+}
+
+.elementor-column.elementor-col-100.elementor-top-column.elementor-element.elementor-element-4e2dd0e {
+    min-height: 0;
+}
+
+.page-id-7819 .btn-primary:hover {
+    color: #1c1b18;
+}
+
+.tableauPlaceholder {
+    max-width: 100%;
+    width: 100% !important;
+}
+
+.tableauPlaceholder iframe {
+    max-width: 100%;
+    width: 100% !important;
+}
+
+@media screen and (max-width: 1200px) {
+    .ob-extension-content__wrapper {
+        padding-right: 0;
+    }
+}
+
+.elementor-element.elementor-element-debd121 .list-slide-speaker.slick-initialized.slick-slider.slick-dotted {
+    display: none !important;
+}
+
+.elementor-element.elementor-element-debd121 .wrapper-speaker-campfire {
+    padding: 0 !important;
+}
+
+.elementor-element.elementor-element-b78b179.elementor-widget.elementor-widget-Hero.Banner {
+    margin-bottom: 0 !important;
+}
+
+.ob-extension-select {
+    display: none;
+    background: rgba(28, 27, 24, 0.05);
+    border: 0;
+    padding: 6px 28px 6px 16px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin-bottom: 32px;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1em;
+}
+
+@media screen and (max-width: 768px) {
+    .ob-extension-content {
+        width: 100%;
+        flex-flow: column;
+    }
+
+    .ob-extension-select {
+        display: block;
+    }
+}
+
+.ct-info-quote {
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
+.ct-info-quote__description {
+    font-family: 'Publico Text';
+    font-size: 20px;
+    line-height: 1.5rem;
+    color: #1c1b18;
+    max-width: 500px;
+}
+
+.ct-info-quote__author {
+    display: flex;
+}
+
+.ct-info-quote__author:before {
+    content: "";
+    display: block;
+    flex: 1;
+    background: #febf10;
+    height: 2px;
+    margin-top: 40px;
+}
+
+@media screen and (max-width: 768px) {
+    .ct-info-quote__author:before {
+        background-color: #fff 0;
+    }
+}
+
+.ct-info-quote__content {
+    padding: 28px 32px 0;
+}
+
+@media screen and (max-width: 768px) {
+    .ct-info-quote__content {
+        padding-top: 12px;
+    }
+}
+
+.sponsor-card.community-sponsors .sponsor-content img {
+    max-width: 100%;
+}
+
+.ct-info-quote__name {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 22px;
+    color: #000;
+}
+
+.ct-info-quote__position {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 20px;
+    color: rgba(28, 27, 24, 0.6);
+}
+
+.ct-info-quote__truelayer {
+    margin-top: 20px;
+}
+
+@media screen and (max-width: 768px) {
+    .ct-info-quote__truelayer {
+        margin-top: 10px;
+    }
+}
+
+.ct-info-quote__truelayer img {
+    max-height: 32px;
+    object-fit: contain;
+}
+
+.ct-info-quote__avatar img {
+    width: 133px;
+    height: 133px;
+    object-fit: cover;
+}
+
+@media screen and (max-width: 768px) {
+    .ct-info-quote__avatar img {
+        height: 100px;
+        width: 100px;
+    }
+
+    .page-id-7819 .wrapper-speaker-campfire .wrapper-slide-speaker {
+        flex-direction: column;
+        display: none;
+    }
+}
+
+.page-id-7819 .wrapper-speaker-campfire {
+    padding: 0 !important;
+}
+
+.page-id-7819 .list-slide-speaker {
+    display: none !important;
+}
+
+.sponsor-content .sponsor-avatar img {
+    max-width: 100%;
+}
