@@ -4,46 +4,27 @@ jQuery(document).ready(function ($) {
 
     const form = $('form.wpforms-form');
 
-    if (window.location.hash) {
-        let hash = window.location.hash.substring(1);
-        const _this = $('[href="#' + hash + '"]');
-        if(!_this.length) return;
-        const id = _this.attr('data-id');
-        history.pushState({}, "", _this.attr('href'));
-        $("#popup-detail").addClass('is-active');
-        const sidebar_row_active = $('.js-active-content-row[data-id="' + id + '"]')
-        sidebar_row_active.addClass('is-active');
-        sidebar_row_active.parent().siblings().children('.js-active-content-row').removeClass('is-active');
-
+    function loadDataContent(id) {
+        const _popupDetail = $('#popup-detail').find('.ob-extension-detail').find('.ob-extension-content__wrapper');
+        _popupDetail.addClass('is-loading');
         $.ajax({
             type: "post",
             dataType: "json",
             url: admin_ajax_url,
             data: {
-                action: "getChapter", //Tên action
+                action: "getChapter",
                 dataId: id,
-
             },
             context: this,
-            beforeSend: function () {
-                //Làm gì đó trước khi gửi dữ liệu vào xử lý
-            },
             success: function (response) {
-                //Làm gì đó khi dữ liệu đã được xử lý
                 if (response.success) {
-                    $('#popup-detail').find('.ob-extension-detail').find('.ob-extension-content__wrapper').html(response.data);
+                    _popupDetail.html(response.data);
                 }
-                else {
-                    console.log('Đã có lỗi xảy ra');
-                }
+                _popupDetail.removeClass('is-loading')
             },
-            error: function (jqXHR, textStatus, errorThrown) {
-                //Làm gì đó khi có lỗi xảy ra
-                console.log('The following error occured: ' + textStatus, errorThrown);
-            }
         })
     }
-
+    
     function downloadURI(uri, name) {
         var link = document.createElement("a");
         link.download = name;
@@ -65,6 +46,21 @@ jQuery(document).ready(function ($) {
             },
         })
     }
+
+    if (window.location.hash) {
+        let hash = window.location.hash.substring(1);
+        const _this = $('[href="#' + hash + '"]');
+        if(!_this.length) return;
+        const id = _this.attr('data-id');
+        history.pushState({}, "", _this.attr('href'));
+        $("#popup-detail").addClass('is-active');
+        const sidebar_row_active = $('.js-active-content-row[data-id="' + id + '"]')
+        sidebar_row_active.addClass('is-active');
+        sidebar_row_active.parent().siblings().children('.js-active-content-row').removeClass('is-active');
+
+        loadDataContent(id);
+    }
+
 
     form.on('wpformsAjaxSubmitSuccess', (event) => {
         $(".container-popup-form").removeClass('is-active');
@@ -127,27 +123,7 @@ jQuery(document).ready(function ($) {
 
     $(document).on('change', '.js-ob-extension-select', function (e) {
         const id = $(this).val();
-        $.ajax({
-            type: "post",
-            dataType: "json",
-            url: admin_ajax_url,
-            action: "getChapter",
-            dataId: id,
-            context: this,
-            beforeSend: function () {
-            },
-            success: function (response) {
-                if (response.success) {
-                    $('#popup-detail').find('.ob-extension-detail').find('.ob-extension-content__wrapper').html(response.data);
-                }
-                else {
-                    console.log('Đã có lỗi xảy ra');
-                }
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                console.log('The following error occured: ' + textStatus, errorThrown);
-            }
-        });
+        loadDataContent(id);
     });
 
     $(document).on('click', '.js-content-index-row', function (e) {
@@ -159,40 +135,9 @@ jQuery(document).ready(function ($) {
         const sidebar_row_active = $('.js-active-content-row[data-id="' + id + '"]')
         sidebar_row_active.addClass('is-active');
         sidebar_row_active.parent().siblings().children('.js-active-content-row').removeClass('is-active');
-
-        $.ajax({
-            type: "post", //Phương thức truyền post hoặc get
-            dataType: "json", //Dạng dữ liệu trả về xml, json, script, or html
-            url: admin_ajax_url, //Đường dẫn chứa hàm xử lý dữ liệu. Mặc định của WP như vậy
-            data: {
-                action: "getChapter", //Tên action
-                dataId: id,
-
-            },
-            context: this,
-            beforeSend: function () {
-                //Làm gì đó trước khi gửi dữ liệu vào xử lý
-            },
-            success: function (response) {
-                //Làm gì đó khi dữ liệu đã được xử lý
-                if (response.success) {
-                    $('#popup-detail').find('.ob-extension-detail').find('.ob-extension-content__wrapper').html(response.data);
-                }
-                else {
-                    console.log('Đã có lỗi xảy ra');
-                }
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                //Làm gì đó khi có lỗi xảy ra
-                console.log('The following error occured: ' + textStatus, errorThrown);
-            }
-        })
+        loadDataContent(id);
     });
 
-    // $(document).on('click', '#wpforms-submit-76', function(e) {
-    //     $("#popup1").removeClass('is-active');
-    //     $("#popup2").addClass('is-active');
-    // })
     $(document).on('click', '#wpforms-submit-7989', function (e) {
         $(".container-popup-form").removeClass('is-active');
         const form_data = $(this).parents('form').serializeArray();
@@ -205,14 +150,7 @@ jQuery(document).ready(function ($) {
             }
         });
         $("#popup4").addClass('is-active');
-    })
-    // document.addEventListener('DOMContentLoaded', function () {
-
-    // })
-    // $(document).on('click', '.js-active-content-row', function(e){
-    //     const data_download = $(this).attr('data-download-report');
-    //     $('.js-download-file').attr('href',data_download);
-    // });
+    });
 
     $(window).on("scroll", function (e) {
         const scrollTop = $(this).scrollTop();

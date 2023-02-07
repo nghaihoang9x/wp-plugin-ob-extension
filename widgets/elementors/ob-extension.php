@@ -37,6 +37,33 @@ class Elementor_Ob_Extension_Widget extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_control(
+            'subcription_form',
+            [
+                'label' => esc_html__('Subcription form', 'textdomain'),
+                'type' => \Elementor\Controls_Manager::TEXT,
+                'default' => "7994",
+            ]
+        );
+
+        $this->add_control(
+            'feedback_form',
+            [
+                'label' => esc_html__('Feedback form', 'textdomain'),
+                'type' => \Elementor\Controls_Manager::TEXT,
+                'default' => "",
+            ]
+        );
+
+        $this->add_control(
+            'new_to_index',
+            [
+                'label' => esc_html__('New to Index form', 'textdomain'),
+                'type' => \Elementor\Controls_Manager::TEXT,
+                'default' => "7994",
+            ]
+        );
+
         $this->end_controls_section();
     }
 
@@ -44,7 +71,15 @@ class Elementor_Ob_Extension_Widget extends \Elementor\Widget_Base
     {
         $settings = $this->get_settings_for_display();
         $file_link = isset($settings['file_link']) ? $settings['file_link'] : null;
+
+        // Get form id
+        $subcription_form = isset($settings['subcription_form']) ? $settings['subcription_form'] : null;
+        $feedback_form = isset($settings['feedback_form']) ? $settings['feedback_form'] : null;
+        $new_to_index = isset($settings['new_to_index']) ? $settings['new_to_index'] : null;
+
+        $file_link = isset($settings['file_link']) ? $settings['file_link'] : null;
         $file_download_url = !empty($file_link) ? $file_link['url'] : '';
+
         $terms = get_terms(array(
             'taxonomy' => 'taxonomy_table_of_content',
             'hide_empty' => false,
@@ -116,27 +151,29 @@ class Elementor_Ob_Extension_Widget extends \Elementor\Widget_Base
                 </div>
             </div>
         </div>
-        <div id="popup1" class="container-popup-form">
-            <div class="wrapper-signup wpforms-container-full">
-                <div class="wpforms-form">
-                    <a href="#" class="ob-extension-detail__close"></a>
-                    <div class="sign-up-form">
-                        <div class="wrapper-form">
-                            <div class="form-control form-control-inline ">
-                                <h2>Get free access to the Index</h2>
-                                <?php
-                                echo do_shortcode('[wpforms id="7989"]');
-                                ?>
-                                <div style="text-align: center;margin-top: 15px;">
-                                    <a href="#" style="color: #FEBF10;display: block;margin-bottom: 10px;" class="content-index-ob--button2">Already Subscribe?</a>
-                                    <p>This information is stored in our CRM database and is used only to contact you. We never share your data with third parties. For details, see our Privacy Policy.</p>
+        <?php if (!empty($subcription_form)) : ?>
+            <div id="popup1" class="container-popup-form">
+                <div class="wrapper-signup wpforms-container-full">
+                    <div class="wpforms-form">
+                        <a href="#" class="ob-extension-detail__close"></a>
+                        <div class="sign-up-form">
+                            <div class="wrapper-form">
+                                <div class="form-control form-control-inline ">
+                                    <h2>Get free access to the Index</h2>
+                                    <?php
+                                    echo do_shortcode('[wpforms id="' . $subcription_form . '"]');
+                                    ?>
+                                    <div style="text-align: center;margin-top: 15px;">
+                                        <a href="#" style="color: #FEBF10;display: block;margin-bottom: 10px;" class="content-index-ob--button2">Already Subscribe?</a>
+                                        <p>This information is stored in our CRM database and is used only to contact you. We never share your data with third parties. For details, see our Privacy Policy.</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        <?php endif; ?>
         <div id="popup2" class="container-popup-form">
             <div class="wrapper-signup wpforms-container-full">
                 <div class="wpforms-form">
@@ -154,29 +191,31 @@ class Elementor_Ob_Extension_Widget extends \Elementor\Widget_Base
                 </div>
             </div>
         </div>
-        <div id="popup3" class="container-popup-form">
-            <div class="wrapper-signup wpforms-container-full">
-                <div class="wpforms-form">
-                    <a href="#" class="ob-extension-detail__close"></a>
-                    <div class="sign-up-form">
-                        <div class="wrapper-form">
-                            <div class="form-control form-control-inline ">
-                                <h2>Final step to get your documents</h2>
-                                <div style="text-align: center;margin-top: 15px;margin-bottom: 15px;width: 100%">
-                                    <p>Enter the email address you use to subscribe to Index.</p>
-                                </div>
-                                <?php
-                                echo do_shortcode('[wpforms id="7994"]');
-                                ?>
-                                <div style="text-align: center;margin-top: 15px;width: 100%">
-                                    <p>New to Index? <a href="#" style="color: #FEBF10;" class="content-index-ob--button">Subscribe?</a></p>
+        <?php if (!empty($new_to_index)) : ?>
+            <div id="popup3" class="container-popup-form">
+                <div class="wrapper-signup wpforms-container-full">
+                    <div class="wpforms-form">
+                        <a href="#" class="ob-extension-detail__close"></a>
+                        <div class="sign-up-form">
+                            <div class="wrapper-form">
+                                <div class="form-control form-control-inline ">
+                                    <h2>Final step to get your documents</h2>
+                                    <div style="text-align: center;margin-top: 15px;margin-bottom: 15px;width: 100%">
+                                        <p>Enter the email address you use to subscribe to Index.</p>
+                                    </div>
+                                    <?php
+                                    echo do_shortcode('[wpforms id="7994"]');
+                                    ?>
+                                    <div style="text-align: center;margin-top: 15px;width: 100%">
+                                        <p>New to Index? <a href="#" style="color: #FEBF10;" class="content-index-ob--button">Subscribe?</a></p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        <?php endif; ?>
         <div id="popup4" class="container-popup-form">
             <div class="wrapper-signup wpforms-container-full">
                 <div class="wpforms-form">
