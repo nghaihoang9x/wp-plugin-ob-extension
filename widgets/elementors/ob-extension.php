@@ -80,6 +80,25 @@ class Elementor_Ob_Extension_Widget extends \Elementor\Widget_Base
         $file_link = isset($settings['file_link']) ? $settings['file_link'] : null;
         $file_download_url = !empty($file_link) ? $file_link['url'] : '';
 
+        $current_user = wp_get_current_user();
+        $user_data = isset($current_user->data) ? $current_user->data : [];
+        $user_name = isset($user_data) ? $user_data->display_name : [];
+        $user_email = isset($user_data) ? $user_data->user_email : [];
+
+        $user_login = is_user_logged_in();
+        
+        if(isset($_COOKIE['ob_user_email'])) {
+            $user_email = $_COOKIE['ob_user_email'];
+        };
+        
+        $activeToken = isset($_GET['activeToken']) ? $_GET['activeToken'] : '';
+        if(!empty($activeToken)) {
+            $hash = hash_hmac('sha256',  $user_email ,'obextensiontokenactive');
+            if($hash == $activeToken) {
+                $user_login = true;
+            } 
+        };
+
         $terms = get_terms(array(
             'taxonomy' => 'taxonomy_table_of_content',
             'hide_empty' => false,
@@ -101,7 +120,7 @@ class Elementor_Ob_Extension_Widget extends \Elementor\Widget_Base
                     </div>
                     <div class="content-index-ob__row-table">
                         <?php
-                        $count = is_user_logged_in() ? -1 : 0;
+                        $count = $user_login ? -1 : 0;
                         foreach ($terms as $term) :
                         ?>
                             <?php
@@ -127,7 +146,7 @@ class Elementor_Ob_Extension_Widget extends \Elementor\Widget_Base
         </div>
         <div class="subscribe-container">
             <div class="wrapper subscribe-container-wrapper">
-                <?php if (is_user_logged_in()) : ?>
+                <?php if ($user_login) : ?>
                     <div class="subscribe-title text-20-bold">
                         Download to access the report.
                     </div>
@@ -139,12 +158,12 @@ class Elementor_Ob_Extension_Widget extends \Elementor\Widget_Base
                 <div class="subscribe-form">
                     <form>
                         <div class="form-control-inline">
-                            <?php if (is_user_logged_in()) : ?>
+                            <?php if ($user_login) : ?>
                                 <a href="<?= $file_download_url ?>" class="btn btn-black file-download-content" download>Download now</a>
                                 <!--                                <a href="#" class="btn btn-black btn-outline content-index-ob--button3">Feedback</a>-->
                             <?php else : ?>
                                 <a href="#" class="btn btn-black content-index-ob--button">Access now</a>
-                                <!--                                <a href="#" class="btn btn-black btn-outline content-index-ob--button2">Already subscribe </a>-->
+                                <a href="#" class="btn btn-black btn-outline content-index-ob--button2" style="margin-left: 15px">Already subscribe</a>
                             <?php endif; ?>
                         </div>
                     </form>
@@ -204,7 +223,7 @@ class Elementor_Ob_Extension_Widget extends \Elementor\Widget_Base
                                         <p>Enter the email address you use to subscribe to Index.</p>
                                     </div>
                                     <?php
-                                    echo do_shortcode('[wpforms id="7994"]');
+                                    echo do_shortcode('[wpforms id="' . $new_to_index .'"]');
                                     ?>
                                     <div style="text-align: center;margin-top: 15px;width: 100%">
                                         <p>New to Index? <a href="#" style="color: #FEBF10;" class="content-index-ob--button">Subscribe?</a></p>
@@ -243,9 +262,11 @@ class Elementor_Ob_Extension_Widget extends \Elementor\Widget_Base
                     <div class="sign-up-form">
                         <div class="wrapper-form">
                             <div class="form-control form-control-inline ">
-                                <h2>Just check your email again</h2>
+                                <h2>Link to active website</h2>
                                 <div style="text-align: center;margin-top: 15px;margin-bottom: 15px;width: 100%">
-                                    <p>The link to access this report has been sent to your email if a subscribe is associated with it. If you did not receive the email, check the spam box.</p>
+                                    <p>The link to access this report hear. Click to "Download" button active this site.</p>
+                                    <a href="<?php echo get_permalink( get_the_ID() ); ?>" class="btn btn-black btn-black js-asset-text"
+                                     style="background-color: #FEBF10;width: 100%;text-align: center;border-color: transparent;width: 120px !important;height: 40px !important;display: flex;margin: 0 auto;justify-content: center;align-items: center;color: #000;margin-top: 15px;">Download</a>
                                 </div>
                             </div>
                         </div>
@@ -275,7 +296,7 @@ class Elementor_Ob_Extension_Widget extends \Elementor\Widget_Base
                                 </ul>
                             </div>
 
-                            <?php if (is_user_logged_in()) : ?>
+                            <?php if ($user_login) : ?>
                                 <a href="<?= $file_download_url ?>" style="margin-top: 20px;width: 100%;" class="btn btn-primary js-download-file" download>Download this report</a>
                             <?php endif; ?>
                         </div>
@@ -301,18 +322,16 @@ class Elementor_Ob_Extension_Widget extends \Elementor\Widget_Base
         </div>
 
         <script>
-            <?php
-            $current_user = wp_get_current_user();
-            $user_data = isset($current_user->data) ? $current_user->data : [];
-            $user_name = isset($user_data) ? $user_data->display_name : [];
-            $user_email = isset($user_data) ? $user_data->user_email : [];
-            ?>
             var ob_settings = {
-                user_login: <?php echo is_user_logged_in() ? 'true' : 'false'; ?>,
+                user_login: <?php echo $user_login ? 'true' : 'false'; ?>,
                 user_name: `<?php echo isset($user_name) ? $user_name : ''; ?>`,
                 user_email: `<?php echo isset($user_email) ? $user_email : ''; ?>`,
-                admin_ajax_url: `<?php echo admin_url('admin-ajax.php'); ?>`
+                admin_ajax_url: `<?php echo admin_url('admin-ajax.php'); ?>`,
+                subcription_form: `<?php echo $subcription_form; ?>`,
+                feedback_form: `<?php echo $feedback_form; ?>`,
+                new_to_index: `<?php echo $new_to_index; ?>`,
             }
+            
         </script>
 <?php
     }

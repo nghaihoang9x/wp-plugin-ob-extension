@@ -320,10 +320,7 @@ function save_user_download_file($data)
 	if (isset($_POST['user_name'])) $user_name = $_POST['user_name'];
 	if (isset($_POST['user_email'])) $user_email = $_POST['user_email'];
 
-	var_dump($user_name);
-	var_dump($user_email);
-
-	if(!empty($user_name) && !empty($user_email)) {
+	if(!empty($user_name) || !empty($user_email)) {
 		$new_post = array(
 			'ID' => '',
 			'post_type' => 'userindexdownload', // Custom Post Type Slug
@@ -333,8 +330,8 @@ function save_user_download_file($data)
 		$post_id = wp_insert_post($new_post);
 		var_dump($post_id);
 		if(!empty($post_id)) {
-			update_post_meta($post_id, 'user_name', $user_name);
-			update_post_meta($post_id, 'user_email', $user_email);
+			if(!empty($user_name)) update_post_meta($post_id, 'user_name', $user_name);
+			if(!empty($user_email)) update_post_meta($post_id, 'user_email', $user_email);
 		}
 	}
 
@@ -343,10 +340,39 @@ function save_user_download_file($data)
 	];
 }
 
+function get_user_info_by_email($data)
+{
+	if (isset($_GET['user_email'])) $user_email = $_GET['user_email'];
+	$user_name = null;
+	$hash = null;
+
+	if($user_email) {
+		$user_info = get_user_by_email($user_email);
+		if(!empty($user_info)) {
+			$user_data = $user_info->data;
+			$user_name = $user_data->user_nicename;
+		}
+		$hash = hash_hmac('sha256',  $user_email ,'obextensiontokenactive');
+	}
+
+	return [
+		'status' => 'success',
+		'data' => [
+			'user_email' => $user_email,
+			'user_name' => $user_name,
+			'hash' => $hash
+		]
+	];
+}
+
 add_action('rest_api_init', function () {
     register_rest_route('theme/v1', 'save-user-download-file', array(
         'methods' => 'POST',
         'callback' => 'save_user_download_file',
+    ));
+    register_rest_route('theme/v1', 'get-user-info-by-email', array(
+        'methods' => 'GET',
+        'callback' => 'get_user_info_by_email',
     ));
 });// http://example.com/wp-json/theme/v1/save-user-download-file
 
