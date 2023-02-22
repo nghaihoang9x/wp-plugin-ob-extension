@@ -86,24 +86,24 @@ class Elementor_Ob_Extension_Widget extends \Elementor\Widget_Base
         $user_email = isset($user_data) ? $user_data->user_email : [];
 
         $user_login = is_user_logged_in();
-        
+
         if(isset($_COOKIE['ob_user_email'])) {
             $user_email = $_COOKIE['ob_user_email'];
         };
-        
+
         $activeToken = isset($_GET['activeToken']) ? $_GET['activeToken'] : '';
         if(!empty($activeToken)) {
             $hash = hash_hmac('sha256',  $user_email ,'obextensiontokenactive');
             if($hash == $activeToken) {
                 $user_login = true;
-            } 
+            }
         };
 
         $terms = get_terms(array(
             'taxonomy' => 'taxonomy_table_of_content',
             'hide_empty' => false,
         ));
-?>
+        ?>
         <div class="content-index-ob">
             <div class="wrapper">
                 <div class="content-index-ob__table">
@@ -122,7 +122,7 @@ class Elementor_Ob_Extension_Widget extends \Elementor\Widget_Base
                         <?php
                         $count = $user_login ? -1 : 0;
                         foreach ($terms as $term) :
-                        ?>
+                            ?>
                             <?php
                             $author = get_field('author', $term->taxonomy . '_' . $term->term_id);
                             ?>
@@ -163,7 +163,7 @@ class Elementor_Ob_Extension_Widget extends \Elementor\Widget_Base
                                 <!--                                <a href="#" class="btn btn-black btn-outline content-index-ob--button3">Feedback</a>-->
                             <?php else : ?>
                                 <a href="#" class="btn btn-black content-index-ob--button">Access now</a>
-                                <a href="#" class="btn btn-black btn-outline content-index-ob--button2" style="margin-left: 15px">Already subscribe</a>
+                                <a href="#" class="btn btn-black btn-outline content-index-ob--button2" style="margin-left: 15px">Already subscribe?</a>
                             <?php endif; ?>
                         </div>
                     </form>
@@ -171,28 +171,28 @@ class Elementor_Ob_Extension_Widget extends \Elementor\Widget_Base
             </div>
         </div>
         <?php if (!empty($subcription_form)) : ?>
-            <div id="popup1" class="container-popup-form">
-                <div class="wrapper-signup wpforms-container-full">
-                    <div class="wpforms-form">
-                        <a href="#" class="ob-extension-detail__close"></a>
-                        <div class="sign-up-form">
-                            <div class="wrapper-form">
-                                <div class="form-control form-control-inline ">
-                                    <h2>Get free access to the Index</h2>
-                                    <?php
-                                    echo do_shortcode('[wpforms id="' . $subcription_form . '"]');
-                                    ?>
-                                    <div style="text-align: center;margin-top: 15px;">
-                                        <a href="#" style="color: #FEBF10;display: block;margin-bottom: 10px;" class="content-index-ob--button2">Already Subscribe?</a>
-                                        <p>This information is stored in our CRM database and is used only to contact you. We never share your data with third parties. For details, see our Privacy Policy.</p>
-                                    </div>
+        <div id="popup1" class="container-popup-form">
+            <div class="wrapper-signup wpforms-container-full">
+                <div class="wpforms-form">
+                    <a href="#" class="ob-extension-detail__close"></a>
+                    <div class="sign-up-form">
+                        <div class="wrapper-form">
+                            <div class="form-control form-control-inline ">
+                                <h2>Get free access to the Index</h2>
+                                <?php
+                                echo do_shortcode('[wpforms id="' . $subcription_form . '"]');
+                                ?>
+                                <div style="text-align: center;margin-top: 15px;">
+                                    <a href="#" style="color: #FEBF10;display: block;margin-bottom: 10px;" class="content-index-ob--button2">Already Subscribe?</a>
+                                    <p>This information is stored in our CRM database and is used only to contact you. We never share your data with third parties. For details, see our Privacy Policy.</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        <?php endif; ?>
+        </div>
+    <?php endif; ?>
         <div id="popup2" class="container-popup-form">
             <div class="wrapper-signup wpforms-container-full">
                 <div class="wpforms-form">
@@ -211,30 +211,30 @@ class Elementor_Ob_Extension_Widget extends \Elementor\Widget_Base
             </div>
         </div>
         <?php if (!empty($new_to_index)) : ?>
-            <div id="popup3" class="container-popup-form">
-                <div class="wrapper-signup wpforms-container-full">
-                    <div class="wpforms-form">
-                        <a href="#" class="ob-extension-detail__close"></a>
-                        <div class="sign-up-form">
-                            <div class="wrapper-form">
-                                <div class="form-control form-control-inline ">
-                                    <h2>Final step to get your documents</h2>
-                                    <div style="text-align: center;margin-top: 15px;margin-bottom: 15px;width: 100%">
-                                        <p>Enter the email address you use to subscribe to Index.</p>
-                                    </div>
-                                    <?php
-                                    echo do_shortcode('[wpforms id="' . $new_to_index .'"]');
-                                    ?>
-                                    <div style="text-align: center;margin-top: 15px;width: 100%">
-                                        <p>New to Index? <a href="#" style="color: #FEBF10;" class="content-index-ob--button">Subscribe?</a></p>
-                                    </div>
+        <div id="popup3" class="container-popup-form">
+            <div class="wrapper-signup wpforms-container-full">
+                <div class="wpforms-form">
+                    <a href="#" class="ob-extension-detail__close"></a>
+                    <div class="sign-up-form">
+                        <div class="wrapper-form">
+                            <div class="form-control form-control-inline ">
+                                <h2>One final step</h2>
+                                <div style="text-align: center;margin-top: 15px;margin-bottom: 15px;width: 100%">
+                                    <p>Enter the email address you used to subscribe.</p>
+                                </div>
+                                <?php
+                                echo do_shortcode('[wpforms id="' . $new_to_index .'"]');
+                                ?>
+                                <div style="text-align: center;margin-top: 15px;width: 100%">
+                                    <p><a href="#" style="color: #FEBF10;" class="content-index-ob--button">Back to the subscribe form</a> </p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        <?php endif; ?>
+        </div>
+    <?php endif; ?>
         <div id="popup4" class="container-popup-form">
             <div class="wrapper-signup wpforms-container-full">
                 <div class="wpforms-form">
@@ -244,10 +244,11 @@ class Elementor_Ob_Extension_Widget extends \Elementor\Widget_Base
                             <div class="form-control form-control-inline ">
                                 <h2>You're all set!!!</h2>
                                 <div style="text-align: center;margin-top: 15px;margin-bottom: 15px;width: 100%">
-                                    <p>A must-have report to stay in the know with open finance index. Click at the button below and enjoy.</p>
+                                    <p>Click the button bellow to access the digital version of the index. You'll also be able to <br> download the pdf report without filling in form again.</p>
                                 </div>
                                 <div style="display: flex;justify-content: center;align-items: center;width: 100%;">
-                                    <a href="<?= $file_download_url ?>" class="btn btn-black file-download-content" download>Download now</a>
+                                    <!-- <a href="<?= $file_download_url ?>" class="btn btn-black file-download-content" download>Download now</a> -->
+                                    <a href="#" class="btn btn-black btn-outline content-index-ob--button2" style="margin-left: 15px">Access now</a>
                                 </div>
                             </div>
                         </div>
@@ -262,11 +263,11 @@ class Elementor_Ob_Extension_Widget extends \Elementor\Widget_Base
                     <div class="sign-up-form">
                         <div class="wrapper-form">
                             <div class="form-control form-control-inline ">
-                                <h2>Link to active website</h2>
+                                <h2>You're all set!!!</h2>
                                 <div style="text-align: center;margin-top: 15px;margin-bottom: 15px;width: 100%">
-                                    <p>The link to access this report hear. Click to "Download" button active this site.</p>
+                                    <p>Click the button bellow to access the digital version of the index. You'll also be able to download the pdf report without filling in the form again.</p>
                                     <a href="<?php echo get_permalink( get_the_ID() ); ?>" class="btn btn-black btn-black js-asset-text"
-                                     style="background-color: #FEBF10;width: 100%;text-align: center;border-color: transparent;width: 120px !important;height: 40px !important;display: flex;margin: 0 auto;justify-content: center;align-items: center;color: #000;margin-top: 15px;">Download</a>
+                                       style="background-color: #FEBF10;width: 100%;text-align: center;border-color: transparent;width: 120px !important;height: 40px !important;display: flex;margin: 0 auto;justify-content: center;align-items: center;color: #000;margin-top: 15px;">Access now</a>
                                 </div>
                             </div>
                         </div>
@@ -288,7 +289,7 @@ class Elementor_Ob_Extension_Widget extends \Elementor\Widget_Base
                                     foreach ($terms as $term) :
                                         $file = get_field('download_report_url', $term->taxonomy . '_' . $term->term_id);
                                         if (empty($file_download)) $file_download = $file;
-                                    ?>
+                                        ?>
                                         <li>
                                             <a href="#contentIdRow<?php echo $term->term_id; ?>" class="js-active-content-row js-content-index-row" data-id="<?php echo $term->term_id; ?>"><?php echo $term->name; ?></a>
                                         </li>
@@ -307,7 +308,7 @@ class Elementor_Ob_Extension_Widget extends \Elementor\Widget_Base
                                 foreach ($terms as $term) :
                                     $file = get_field('download_report_url', $term->taxonomy . '_' . $term->term_id);
                                     if (empty($file_download)) $file_download = $file;
-                                ?>
+                                    ?>
                                     <option value="<?php echo $term->term_id; ?>">
                                         <?php echo $term->name; ?>
                                     </option>
@@ -331,9 +332,9 @@ class Elementor_Ob_Extension_Widget extends \Elementor\Widget_Base
                 feedback_form: `<?php echo $feedback_form; ?>`,
                 new_to_index: `<?php echo $new_to_index; ?>`,
             }
-            
+
         </script>
-<?php
+        <?php
     }
 
     protected function _content_template()

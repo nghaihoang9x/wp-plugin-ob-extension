@@ -55,7 +55,6 @@ jQuery(document).ready(function ($) {
                 user_email: user_email,
             },
             success: function (response) {
-                console.log(response);
                 if (response) {
                     const {user_email,user_name,hash} = response.data;
                     setCookie('ob_user_name',user_name,14);
@@ -109,7 +108,12 @@ jQuery(document).ready(function ($) {
             let hash = window.location.hash;
             // console.log(hash.includes('contentIdRow'));
             if(hash.includes('contentIdRow')) {
-                $("#popup1").addClass('is-active');
+                const _popup1 = $("#popup1");
+                if (_popup1.find('form').length) {
+                    $("#popup1").addClass('is-active');
+                } else {
+                    $("#popup4").addClass('is-active');
+                }
             }
         }
     }
@@ -119,7 +123,6 @@ jQuery(document).ready(function ($) {
     form.on('wpformsAjaxSubmitSuccess', (event) => {
         $(".container-popup-form").removeClass('is-active');
         $("#popup4").addClass('is-active');
-        console.log('wpformsAjaxSubmitSuccess');
     });
 
     $('.btn-attend-campfire-click').on('click', function () {
@@ -172,7 +175,12 @@ jQuery(document).ready(function ($) {
     $('.content-index-ob--button2').on('click', (e) => {
         e.preventDefault();
         $(".container-popup-form").removeClass('is-active');
-        $("#popup3").addClass('is-active');
+        const _popup1 = $("#popup3");
+        if (!_popup1.find('form').length) {
+            $("#popup5").addClass('is-active');
+        }else{
+            $("#popup3").addClass('is-active');
+        }
     });
 
     $(document).on('change', '.js-ob-extension-select', function (e) {
@@ -183,7 +191,12 @@ jQuery(document).ready(function ($) {
     $(document).on('click', '.js-content-index-row', function (e) {
         e.preventDefault();
         if(!user_login) {
-            $("#popup1").addClass('is-active');
+            const _popup1 = $("#popup1");
+            if (_popup1.find('form').length) {
+                $("#popup1").addClass('is-active');
+            } else {
+                $("#popup4").addClass('is-active');
+            }
             return;
         }
         const _this = $(this);
@@ -211,10 +224,6 @@ jQuery(document).ready(function ($) {
                 check = true;
             }
         });
-        if(!$(this).parents('form').find('.wpforms-error').length) {
-            $(".container-popup-form").removeClass('is-active');
-            $("#popup4").addClass('is-active');
-        }
         // const form = $(this).parents('.wpforms-form');
         // form.on('wpformsAjaxSubmitSuccess', (event) => {
         //     $(".container-popup-form").removeClass('is-active');
@@ -223,10 +232,16 @@ jQuery(document).ready(function ($) {
         // });
     });
 
+    $('#wpforms-' + subcription_form).bind("DOMSubtreeModified", function(e){
+        const _this = $(this);
+        if(!_this.find('form').length && !_this.find('#wpforms-confirmation-' + subcription_form).length) {
+            $(".container-popup-form").removeClass('is-active');
+            $("#popup4").addClass('is-active');
+        }
+    });
     
     $(document).on('click', '#wpforms-submit-' + new_to_index, function (e) {
         const form_data = $(this).parents('form').serializeArray();
-        console.log(form_data);
         let check = false;
         form_data.map((v, i) => {
             if (v.name == 'wpforms[fields][2]') {
@@ -235,8 +250,16 @@ jQuery(document).ready(function ($) {
                 check = true;
             }
         });
-        if($(this).parents('form').find('.wpforms-error').length) return;
-        getUserInfo(user_email);
+    });
+    
+    $('#wpforms-' + new_to_index).bind("DOMSubtreeModified", function(e){
+        const _this = $(this);
+        if(!_this.find('form').length) {
+            $("#popup5").addClass('is-active');
+        }
+        if(!_this.find('form').length && !_this.find('#wpforms-confirmation-' + new_to_index).length) {
+            getUserInfo(user_email);
+        }
     });
 
     $(window).on("scroll", function (e) {

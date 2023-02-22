@@ -46,7 +46,7 @@ function wpshout_action_header()
 
 	wp_register_style('ob-extension', plugin_dir_url(__FILE__) . '_inc/css/ob-extension.css', array(), false);
 	wp_enqueue_style('ob-extension');
-    wp_enqueue_script( 'ob-extension-js', plugin_dir_url(__FILE__) . '_inc/js/ob-extension.js', false );
+    wp_enqueue_script( 'ob-extension-js-v2', plugin_dir_url(__FILE__) . '_inc/js/ob-extension.js',array(), '1.0.2', true );
 }
 
 add_action('wp_enqueue_scripts', 'wpshout_action_header', false);
